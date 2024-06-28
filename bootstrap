@@ -1,0 +1,78 @@
+#! /usr/bin/env python3
+
+import os
+import logging
+from sys import stdout
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] [%(levelname)s] %(filename)s: %(message)s',
+    handlers=[logging.StreamHandler(stream=stdout)]
+)
+
+logger = logging.getLogger()
+config_dirs = os.listdir("config")
+config_files = [".tmux.conf", ".gitconfig", ".xinitrc"]
+
+
+def stage_validate() -> bool:
+    status = True
+    existing_configs = []
+
+    for config_dir in config_dirs:
+        config_dir_path = os.path.expanduser(f"~/.config/{config_dir}")
+        if os.path.isdir(config_dir_path):
+            status = False
+            existing_configs.append(config_dir_path)
+
+    for config_file in config_files:
+        config_file_path = os.path.expanduser(f"~/{config_file}")
+        if os.path.isfile(config_file_path):
+            status = False
+            existing_configs.append(config_file_path)
+
+    if not status:
+        logger.warning("The following directories already existing, "
+                       "remove them first!")
+        for existing_dir in existing_configs:
+            logger.warning(f"- {existing_dir}")
+
+    return status
+
+
+def stage_install() -> bool:
+    current_dir = os.getcwd()
+
+    for config_dir in config_dirs:
+        config_dir_target_path = os.path.expanduser(f"~/.config/{config_dir}")
+        config_dir_src_path = f"{current_dir}/config/{config_dir}"
+        os.symlink(config_dir_src_path, config_dir_target_path)
+
+    for config_file in config_files:
+        config_file_dest_path = os.path.expanduser(f"~/{config_file}")
+        config_file_src_path = f"{current_dir}/{config_file.lstrip('.')}"
+        os.symlink(config_file_src_path, config_file_dest_path)
+
+    return True
+
+
+def main() -> None:
+    stages = [
+        stage_validate,
+        stage_install
+    ]
+
+    for stage in stages:
+        stage_name = stage.__name__.lstrip("stage_")
+        logger.info("Running stage: %s", stage_name)
+
+        if not stage():
+            logger.error("Failed on: %s", stage_name)
+            exit(1)
+
+    logger.info("Successfully installed dotfiles!")
+
+
+if __name__ == "__main__":
+    main()
