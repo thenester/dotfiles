@@ -1,0 +1,44 @@
+[user]
+  email = denys@thenester.co
+  name = Denys Nesterenko
+  username = thenester
+  signkey = CA0C776971B4AFC7
+  signingkey = 4991E4B4166A8DC4
+
+[commit]
+  gpgsign = true
+
+[tag]
+  gpgSign = true
+
+[init]
+  defaultBranch = main
+
+[core]
+  editor = nvim
+  pager = cat
+
+[pull]
+  rebase = true
+
+[alias]
+  s = status
+  c = "!f() { if [ -z \"$1\" ]; then git commit -S; exit; fi; git commit -S -m \"$1\"; }; f"
+  p = !git push -u origin $(git branch --show-current)
+  sw = switch
+  pf = !git push -u origin $(git branch --show-current) --force
+  pick = cherry-pick
+  sh = show
+  clone-recursive = clone --recurse-submodules
+  rm-untracked = "!f() { rm -rf $(git ls-files . --exclude-standard --others); }; f"
+  aa = "!git add . & git amend"
+  apf = "!git amend && git pf"
+  aapf = "!git add . && git apf"
+  amend = "!f() { if [ -z \"$1\" ]; then git commit --amend --no-edit; else git commit --amend -m \"$1\"; fi; }; f"
+  l = "!f() { if [ -z \"$1\" ]; then git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit; else git --no-pager log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset\n' --abbrev-commit -n $1; fi; }; f"
+  hard-clean = !git clean -xfd && git reset --hard && git submodule foreach "git clean -xfd && git reset --hard"
+  lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
+  rename-branch = "!f() { if [ -z \"$1\" ]; then echo 'Error: Provide a new branch name' >&2; exit; fi; git branch -m $(git branch --show-current) $1; }; f"
+  default-branch = !git rev-parse --abbrev-ref origin/HEAD
+  bump = !git rebase -i $(git default-branch)
+  show-alias = !git config -l | grep alias
