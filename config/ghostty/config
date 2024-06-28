@@ -1,0 +1,38 @@
+# This is the configuration file for Ghostty.
+#
+# This template file has been automatically created at the following
+# path since Ghostty couldn't find any existing config files on your system:
+#
+#   /home/rocky/.config/ghostty/config
+#
+# The template does not set any default options, since Ghostty ships
+# with sensible defaults for all options. Users should only need to set
+# options that they want to change from the default.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+
+# Config syntax crash course
+# ==========================
+# # The config file consists of simple key-value pairs,
+# # separated by equals signs.
+theme = tokyonight
+
+background = 25282d
+background-opacity = 1
+
+font-size = 20
+font-family = RecMonoSmCasual Nerd Font
+window-padding-x = 10
+window-padding-y = 10
+
+gtk-tabs-location = hidden
+
+# Keybinds
+keybind = ctrl+tab=toggle_tab_overview
+keybind = alt+enter=new_tab
+keybind = alt+w=close_tab
+keybind = ctrl+shift+o=ignore

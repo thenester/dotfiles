@@ -1,0 +1,102 @@
+@define-color bg #282828;
+@define-color fg #ebdbb2;
+@define-color bg1 #3c3836;
+@define-color warn #fb4934;
+
+* {
+	transition: none;
+	box-shadow: none;
+}
+
+#waybar {
+	font-family: "Maple Mono";
+	/* font-family: "GohuFont 11 Nerd Font"; */
+	font-size: 1.2em;
+	font-weight: 400;
+	color: @fg;
+	background: @bg;
+}
+
+#workspaces {
+	margin: 2px 4px;
+}
+
+#workspaces button {
+	margin: 2px;
+	padding: 0 4px;
+	color: @fg;
+}
+
+#workspaces button.active {
+	border-radius: 4px;
+	background-color: @bg1;
+}
+
+#workspaces button:hover {
+    background: @bg;
+}
+
+#workspaces button.urgent {
+	color: @warn;
+}
+
+#tray {
+	margin: 6px 6px;
+	padding: 2px 4px;
+	border-radius: 4px;
+	background-color: @bg1;
+}
+
+#tray * {
+	padding: 0 6px;
+	border-left: 1px solid @bg;
+}
+
+#tray *:first-child {
+	border-left: none;
+}
+
+#mode,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#idle_inhibitor,
+#backlight,
+#custom-storage,
+#custom-updates,
+#custom-weather,
+#custom-mail,
+#temperature,
+#clock,
+#language {
+	margin: 6px 2px;
+	padding: 2px 20px;
+	background-color: @bg1;
+	border-radius: 4px;
+	min-width: 20px;
+}
+
+#pulseaudio.muted {
+	color: @warn;
+}
+
+#pulseaudio.bluetooth {
+	color: @warn;
+}
+
+#temperature.critical {
+	color: @warn;
+}
+
+#window {
+	font-size: 0.9em;
+	font-weight: 400;
+}
+
+#language {
+	font-size: 0.9em;
+	font-weight: 500;
+	letter-spacing: -1px;
+}
