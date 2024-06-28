@@ -1,0 +1,36 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "vim_mode": true,
+  "telemetry": {
+    "metrics": false
+  },
+  "features": {
+    // Zed keymap
+    //
+    // For information on binding keys, see the Zed
+    // documentation: https://zed.dev/docs/key-bindings
+    //
+    // To see the default key bindings run `zed: open default keymap`
+    // from the command palette.
+    "edit_prediction_provider": "zed"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 20,
+  "icon_theme": "Catppuccin Frappé",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Frappé",
+    "dark": "Catppuccin Mocha"
+  },
+  "buffer_font_family": "RecMonoCasual Nerd Font",
+  "buffer_line_height": "comfortable",
+  "show_whitespaces": "boundary",
+  "restore_on_startup": "last_session"
+}
