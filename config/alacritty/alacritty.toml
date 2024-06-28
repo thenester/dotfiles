@@ -1,0 +1,14 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding = { x = 15, y = 15 }
+
+[font]
+size = 16
+normal = { family = "FantasqueSansM Nerd Font Propo" }
+
+[general]
+import = [
+    "~/.config/alacritty/theme.toml"
+]

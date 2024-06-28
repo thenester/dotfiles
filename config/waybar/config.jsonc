@@ -1,0 +1,125 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 34,
+    // "width": 90,
+    "spacing": 5,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["tray", "hyprland/language", "pulseaudio", "backlight", "network", "battery"],
+     "hyprland/workspaces": {
+         "disable-scroll": true,
+         "on-click": "activate",
+         // "format": "{name}: {icon}",
+         "format": "{name}",
+         "on-scroll-up": "hyprctl dispatch workspace m-1 > /dev/null",
+         "on-scroll-down": "hyprctl dispatch workspace m+1 > /dev/null",
+         "format-icons": {
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",
+             "6": "",
+             "7": "󰈙",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+     },
+    "keyboard-state": {
+        "numlock": false,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "🇺🇸",
+        "format-ru": "n/a",
+        "format-uk": "🇺🇦",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+        "max-length": 18
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 0
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        // "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖"]
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 🗲",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+    "network": {
+        "interface": "wlan0", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+}
