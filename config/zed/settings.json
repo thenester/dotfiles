@@ -1,0 +1,60 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "vim_mode": false,
+  "telemetry": {
+    "metrics": false
+  },
+  "features": {
+    // Zed keymap
+    //
+    // For information on binding keys, see the Zed
+    // documentation: https://zed.dev/docs/key-bindings
+    //
+    // To see the default key bindings run `zed: open default keymap`
+    // from the command palette.
+    "edit_prediction_provider": "zed"
+  },
+  "ssh_connections": [
+    {
+      "host": "larch-x86-10",
+      "projects": [
+        {
+          "paths": ["~/Projects/202411"]
+        },
+        {
+          "paths": ["~/Projects/sai-marvell-api"]
+        },
+        {
+          "paths": ["~/Projects/tests"]
+        }
+      ]
+    },
+    {
+      "host": "ipi_qa",
+      "projects": [
+        {
+          "paths": ["~/dnesterenko/tests"]
+        }
+      ]
+    }
+  ],
+  "ui_font_size": 16,
+  "buffer_font_size": 20,
+  "icon_theme": "Catppuccin Frappé",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Frappé",
+    "dark": "One Dark"
+  },
+  "buffer_font_family": "ComicShannsMono Nerd Font",
+  "buffer_line_height": "comfortable",
+  "show_whitespaces": "boundary",
+  "restore_on_startup": "last_session"
+}
